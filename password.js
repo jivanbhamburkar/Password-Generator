@@ -11,6 +11,7 @@ const resultCont = document.getElementById("result-container");
 const warnEl = document.getElementById("warning");
 const copyAlert = document.getElementById("copyAlert");
 const message = document.getElementById("message");
+
 //function to get LowerCase
 function getRandomLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
@@ -67,12 +68,12 @@ function generatePassword() {
 
     resultEl.innerHTML = result;
     warnEl.innerHTML = "Atleast check one checkbox";
-    
+
     warnEl.style.color = "red";
     setTimeout(function () {
       resultEl.innerHTML = "";
-      message.innerHTML = "Click Generate Password",
-      resultEl.style.color = "";
+      (message.innerHTML = "Click Generate Password"),
+        (resultEl.style.color = "");
       resultEl.style.fontSize = "";
       document.getElementById("result-container").style.background = "";
       warnEl.innerHTML = "";
@@ -81,22 +82,29 @@ function generatePassword() {
   }
   var result = "";
   while (result.length < lengthEl.value) {
-    if (uppercaseEl.checked && result.length < lengthEl.value) {
-      result += getRandomUpper();
-    }
-    if (lowercaseEl.checked && result.length < lengthEl.value) {
-      result += getRandomLower();
-    }
-    if (numbersEl.checked && result.length < lengthEl.value) {
-      result += getRandomNumber();
-    }
-    if (symbolsEl.checked && result.length < lengthEl.value) {
-      result += getRandomSymbol();
+    let random = Math.floor(Math.random() * 4);
+
+    switch (random) {
+      case 0:
+        result += getRandomUpper();
+        break;
+
+      case 1:
+        result += getRandomLower();
+        break;
+
+      case 2:
+        result += getRandomSymbol();
+        break;
+
+      default:
+        result += getRandomNumber();
     }
   }
-
   resultEl.innerHTML = result;
 }
+
+//To Copy Password to clipboard
 function copyPass() {
   const textarea = document.createElement("textarea");
   const password = resultEl.innerText;
@@ -111,42 +119,3 @@ function copyPass() {
   copyAlert.innerHTML = "Password copied to clipboard";
   copyAlert.style.color = "gold";
 }
-
-
-
-
-
-
-
-// result = "Enter Password length between 4 to 20";
-// resultEl.style.fontSize = "90%"
-// resultEl.style.color = "white";
-// document.getElementById("result-container").style.background = "red";
-// resultEl.innerHTML = result;
-// // copy.remove();
-// setTimeout(function(){
-//   resultEl.innerHTML = "Click Generate Password";
-//   resultEl.style.color = "";
-//   resultEl.style.fontSize = "";
-
-//   document.getElementById("result-container").style.background = "";
-// },2700)
-// return;
-
-// && lengthEl.value > 20 && lengthEl.value < 4
-
-// if(result.length < lengthEl.value){
-//   generatePassword();
-// }
-
-// alert(
-// "Password Copied.   " + resultEl.innerHTML
-//  +
-// "   length   " +
-// password.length
-// );
-
-// copy.remove();
-
-// resultEl.style.color = "gold";
-// document.getElementById("result-container").style.background = "rgb(233, 34, 34)";
