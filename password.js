@@ -86,18 +86,22 @@ function generatePassword() {
 
     switch (random) {
       case 0:
+        if(uppercaseEl.checked)
         result += getRandomUpper();
         break;
 
       case 1:
+        if(lowercaseEl.checked)
         result += getRandomLower();
         break;
 
       case 2:
+        if(symbolsEl.checked)
         result += getRandomSymbol();
         break;
 
       default:
+        if(numbersEl.checked)
         result += getRandomNumber();
     }
   }
